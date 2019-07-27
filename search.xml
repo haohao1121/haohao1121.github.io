@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hexo不同电脑之间工作]]></title>
+    <url>%2F2019%2F07%2F27%2F2019%2Fhexo-diff-work%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start从github下载blog-hexo代码到本地前提条件 安装Git，Node， 切换npm源，建议使用淘宝 全局安装Hexo 进入blog-hexo根目录，安装npm依赖（npm install） 本地开发1$ hexo clean &amp;&amp; hexo s More info: Server 生成静态文件1$ hexo clean &amp;&amp; hexo generate More info: Generating 将静态文件发布到GitHub_config.yml 指定自己GitHub博客仓库路径 1$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>init</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MyBatis plugin for IntelliJ 各个版本的下载地址]]></title>
     <url>%2F2019%2F07%2F26%2F2017%2FMyBatis_Plugin%2F</url>
     <content type="text"><![CDATA[MyBatis plugin for IntelliJ： http://plugins.jetbrains.com/plugin/7293]]></content>
