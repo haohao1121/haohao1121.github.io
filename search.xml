@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F07%2F27%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>LLI</category>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo不同电脑之间工作]]></title>
     <url>%2F2019%2F07%2F27%2F2019%2Fhexo-diff-work%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start从github下载blog-hexo代码到本地前提条件 安装Git，Node， 切换npm源，建议使用淘宝 全局安装Hexo 进入blog-hexo根目录，安装npm依赖（npm install） 本地开发1$ hexo clean &amp;&amp; hexo s More info: Server 生成静态文件1$ hexo clean &amp;&amp; hexo generate More info: Generating 将静态文件发布到GitHub_config.yml 指定自己GitHub博客仓库路径 1$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy More info: Deployment]]></content>
       <categories>
+        <category>LLI</category>
         <category>hexo</category>
       </categories>
       <tags>
@@ -26,10 +36,5 @@
     <title><![CDATA[一个令人赏心悦目的视频分享给大家]]></title>
     <url>%2F2019%2F07%2F26%2F2017%2Flaunchpad%2F</url>
     <content type="text"><![CDATA[Launchpad : Zedd - Spectrum 音乐及视频文件下载：链接：http://pan.baidu.com/s/1kVll2Vt 密码：s9jm launchpad社区：http://abletive.com/]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F07%2F26%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
