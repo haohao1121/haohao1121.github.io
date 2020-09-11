@@ -280,6 +280,92 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-2020/mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/11/2020/mysql/" class="article-date">
+      <time datetime="2020-09-11T09:02:07.946Z" itemprop="datePublished">2020-09-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/11/2020/mysql/">MySQL 层级表结构相关脚本</a>
+    </h1>
+  
+
+        
+            <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">390字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+        
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="MySQL-层级表结构相关脚本"><a href="#MySQL-层级表结构相关脚本" class="headerlink" title="MySQL 层级表结构相关脚本"></a>MySQL 层级表结构相关脚本</h2><p>========================1.刷新排序值=====================</p>
+<h3 id="刷新同一层级排序值"><a href="#刷新同一层级排序值" class="headerlink" title="刷新同一层级排序值"></a>刷新同一层级排序值</h3><p>SELECT<br>    result.id,<br>    result.parent_id,<br>    result.order_index,<br>    result.new_index<br>FROM<br>    (<br>    SELECT<br>        tar.id,<br>        tar.parent_id,<br>        tar.order_index,<br>        @rownum := @rownum + 1,<br>    IF<br>        ( @pid = tar.parent_id, @rank := @rank + 1, @rank := 1 ) AS new_index,<br>        @pid := tar.parent_id<br>    FROM<br>        ( SELECT res_id AS id, IFNULL( parent_id, 0 ) AS parent_id, order_index FROM baseinfo_resource_menu WHERE module = 2 ORDER BY parent_id ASC ) tar,<br>    ( SELECT @rownum := 0, @pid := NULL, @rank := 0 ) a<br>    ) result;</p>
+<p>========================2.刷新编码==========================</p>
+<h3 id="查询编码错误数据"><a href="#查询编码错误数据" class="headerlink" title="查询编码错误数据"></a>查询编码错误数据</h3><p>SELECT<br>    target.dept_id,<br>    target.parent_id,<br>    target.<code>code</code>,<br>    source.newCode<br>FROM<br>    baseinfo_department AS target<br>    INNER JOIN (<br>    SELECT<br>        child.dept_id,<br>        child.<code>code</code> AS child_code,<br>        child.order_index,<br>        parent.<code>code</code> AS parent_code,<br>        CONCAT( IFNULL( parent.<code>code</code>, ‘’ ), LPAD( child.order_index, 3, ‘0’ ) ) AS newCode<br>    FROM<br>        baseinfo_department AS child<br>        LEFT JOIN baseinfo_department AS parent ON child.parent_id = parent.dept_id<br>    ORDER BY<br>        parent.<code>code</code>,<br>        child.order_index<br>    ) AS source<br>WHERE<br>    target.module = 0<br>    AND target.dept_id = source.dept_id<br>    AND target.<code>code</code> &lt;&gt; source.newCode;</p>
+<h3 id="刷新编码-同一层级排序不可以重复"><a href="#刷新编码-同一层级排序不可以重复" class="headerlink" title="刷新编码(同一层级排序不可以重复)"></a>刷新编码(同一层级排序不可以重复)</h3><p>UPDATE baseinfo_department AS target<br>INNER JOIN (<br>    SELECT<br>        child.dept_id,<br>        child.<code>code</code> AS child_code,<br>        child.order_index,<br>        parent.<code>code</code> AS parent_code,<br>        CONCAT( IFNULL( parent.<code>code</code>, ‘’ ), LPAD( child.order_index, 3, ‘0’ ) ) AS newCode<br>    FROM<br>        baseinfo_department AS child<br>        LEFT JOIN baseinfo_department AS parent ON child.parent_id = parent.dept_id<br>    ORDER BY<br>        parent.<code>code</code>,<br>        child.order_index<br>    ) AS source ON target.dept_id = source.dept_id<br>    SET target.<code>code</code> = source.newCode<br>WHERE<br>    target.module = 0;<br>=====================3.刷新全路径名称=======================</p>
+<h3 id="查询全路径错误数据"><a href="#查询全路径错误数据" class="headerlink" title="查询全路径错误数据"></a>查询全路径错误数据</h3><p>SELECT<br>    Source.ParentDeptName,<br>    Target.*<br>FROM<br>    baseinfo_department AS Target<br>    INNER JOIN (<br>    SELECT<br>        IFNULL(<br>            (<br>            SELECT<br>                GROUP_CONCAT( <code>name</code> ORDER BY <code>code</code> SEPARATOR ‘/‘ ) AS ParentDeptName<br>            FROM<br>                baseinfo_department<br>            WHERE<br>                <code>code</code> = LEFT ( DeptInfo.<code>code</code>, LENGTH( <code>code</code> ) )<br>                AND LENGTH( <code>code</code> ) &gt; 3<br>            ),<br>            DeptInfo.<code>name</code><br>        ) AS ParentDeptName,<br>        DeptInfo.*<br>    FROM<br>        baseinfo_department AS DeptInfo<br>    ) AS Source<br>WHERE<br>    Target.dept_id = Source.dept_id<br>    AND Target.full_name &lt;&gt; Source.ParentDeptName;</p>
+<h3 id="全路径部门名称初始化"><a href="#全路径部门名称初始化" class="headerlink" title="全路径部门名称初始化"></a>全路径部门名称初始化</h3><p>UPDATE baseinfo_department AS Target<br>INNER JOIN (<br>    SELECT<br>        IFNULL(<br>            (<br>            SELECT<br>                GROUP_CONCAT( <code>name</code> ORDER BY <code>code</code> SEPARATOR ‘/‘ ) AS ParentDeptName<br>            FROM<br>                baseinfo_department<br>            WHERE<br>                <code>code</code> = LEFT ( DeptInfo.<code>code</code>, LENGTH( <code>code</code> ) )<br>                AND LENGTH( <code>code</code> ) &gt; 3<br>            ),<br>            DeptInfo.<code>name</code><br>        ) AS ParentDeptName,<br>        DeptInfo.*<br>    FROM<br>        baseinfo_department AS DeptInfo<br>    ) AS Source ON Target.dept_id = Source.dept_id<br>    SET Target.full_name = Source.ParentDeptName;</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LLI/">LLI</a><a class="article-category-link" href="/categories/LLI/Mysql/">Mysql</a>
+    </div>
+
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -699,7 +785,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2019 Li Hao
+                2019-2020 Li Hao
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>

@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="有些事需要拿出永不言弃的勇气">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="MySQL 层级表结构相关脚本========================1.刷新排序值===================== 刷新同一层级排序值SELECT    result.id,    result.parent_id,    result.order_index,    result.new_indexFROM    (    SELECT        tar.id,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 层级表结构相关脚本">
+<meta property="og:url" content="http://yoursite.com/2020/09/11/2020/mysql/index.html">
 <meta property="og:site_name" content="lli">
-<meta property="og:description" content="有些事需要拿出永不言弃的勇气">
+<meta property="og:description" content="MySQL 层级表结构相关脚本========================1.刷新排序值===================== 刷新同一层级排序值SELECT    result.id,    result.parent_id,    result.order_index,    result.new_indexFROM    (    SELECT        tar.id,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-26T11:15:40.109Z">
+<meta property="og:updated_time" content="2020-09-11T09:02:07.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="有些事需要拿出永不言弃的勇气">
+<meta name="twitter:title" content="MySQL 层级表结构相关脚本">
+<meta name="twitter:description" content="MySQL 层级表结构相关脚本========================1.刷新排序值===================== 刷新同一层级排序值SELECT    result.id,    result.parent_id,    result.order_index,    result.new_indexFROM    (    SELECT        tar.id,">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>标签 | lli</title>
+<title>MySQL 层级表结构相关脚本 | lli</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,7 +67,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -274,11 +274,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2020/mysql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/tags/index.html" class="article-date">
-      <time datetime="2019-07-26T10:30:34.000Z" itemprop="datePublished">2019-07-26</time>
+      <a href="/2020/09/11/2020/mysql/" class="article-date">
+      <time datetime="2020-09-11T09:02:07.946Z" itemprop="datePublished">2020-09-11</time>
 </a>
 
 
@@ -293,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      标签
+      MySQL 层级表结构相关脚本
     </h1>
   
 
@@ -303,7 +303,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">390字</span>
       </span>
     </span>
 
@@ -312,7 +312,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -321,6 +321,10 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/LLI/">LLI</a><a class="article-category-link" href="/categories/LLI/Mysql/">Mysql</a>
+    </div>
+
 
         
         <div class="clearfix"></div>
@@ -330,96 +334,81 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <h2 id="MySQL-层级表结构相关脚本"><a href="#MySQL-层级表结构相关脚本" class="headerlink" title="MySQL 层级表结构相关脚本"></a>MySQL 层级表结构相关脚本</h2><p>========================1.刷新排序值=====================</p>
+<h3 id="刷新同一层级排序值"><a href="#刷新同一层级排序值" class="headerlink" title="刷新同一层级排序值"></a>刷新同一层级排序值</h3><p>SELECT<br>    result.id,<br>    result.parent_id,<br>    result.order_index,<br>    result.new_index<br>FROM<br>    (<br>    SELECT<br>        tar.id,<br>        tar.parent_id,<br>        tar.order_index,<br>        @rownum := @rownum + 1,<br>    IF<br>        ( @pid = tar.parent_id, @rank := @rank + 1, @rank := 1 ) AS new_index,<br>        @pid := tar.parent_id<br>    FROM<br>        ( SELECT res_id AS id, IFNULL( parent_id, 0 ) AS parent_id, order_index FROM baseinfo_resource_menu WHERE module = 2 ORDER BY parent_id ASC ) tar,<br>    ( SELECT @rownum := 0, @pid := NULL, @rank := 0 ) a<br>    ) result;</p>
+<p>========================2.刷新编码==========================</p>
+<h3 id="查询编码错误数据"><a href="#查询编码错误数据" class="headerlink" title="查询编码错误数据"></a>查询编码错误数据</h3><p>SELECT<br>    target.dept_id,<br>    target.parent_id,<br>    target.<code>code</code>,<br>    source.newCode<br>FROM<br>    baseinfo_department AS target<br>    INNER JOIN (<br>    SELECT<br>        child.dept_id,<br>        child.<code>code</code> AS child_code,<br>        child.order_index,<br>        parent.<code>code</code> AS parent_code,<br>        CONCAT( IFNULL( parent.<code>code</code>, ‘’ ), LPAD( child.order_index, 3, ‘0’ ) ) AS newCode<br>    FROM<br>        baseinfo_department AS child<br>        LEFT JOIN baseinfo_department AS parent ON child.parent_id = parent.dept_id<br>    ORDER BY<br>        parent.<code>code</code>,<br>        child.order_index<br>    ) AS source<br>WHERE<br>    target.module = 0<br>    AND target.dept_id = source.dept_id<br>    AND target.<code>code</code> &lt;&gt; source.newCode;</p>
+<h3 id="刷新编码-同一层级排序不可以重复"><a href="#刷新编码-同一层级排序不可以重复" class="headerlink" title="刷新编码(同一层级排序不可以重复)"></a>刷新编码(同一层级排序不可以重复)</h3><p>UPDATE baseinfo_department AS target<br>INNER JOIN (<br>    SELECT<br>        child.dept_id,<br>        child.<code>code</code> AS child_code,<br>        child.order_index,<br>        parent.<code>code</code> AS parent_code,<br>        CONCAT( IFNULL( parent.<code>code</code>, ‘’ ), LPAD( child.order_index, 3, ‘0’ ) ) AS newCode<br>    FROM<br>        baseinfo_department AS child<br>        LEFT JOIN baseinfo_department AS parent ON child.parent_id = parent.dept_id<br>    ORDER BY<br>        parent.<code>code</code>,<br>        child.order_index<br>    ) AS source ON target.dept_id = source.dept_id<br>    SET target.<code>code</code> = source.newCode<br>WHERE<br>    target.module = 0;<br>=====================3.刷新全路径名称=======================</p>
+<h3 id="查询全路径错误数据"><a href="#查询全路径错误数据" class="headerlink" title="查询全路径错误数据"></a>查询全路径错误数据</h3><p>SELECT<br>    Source.ParentDeptName,<br>    Target.*<br>FROM<br>    baseinfo_department AS Target<br>    INNER JOIN (<br>    SELECT<br>        IFNULL(<br>            (<br>            SELECT<br>                GROUP_CONCAT( <code>name</code> ORDER BY <code>code</code> SEPARATOR ‘/‘ ) AS ParentDeptName<br>            FROM<br>                baseinfo_department<br>            WHERE<br>                <code>code</code> = LEFT ( DeptInfo.<code>code</code>, LENGTH( <code>code</code> ) )<br>                AND LENGTH( <code>code</code> ) &gt; 3<br>            ),<br>            DeptInfo.<code>name</code><br>        ) AS ParentDeptName,<br>        DeptInfo.*<br>    FROM<br>        baseinfo_department AS DeptInfo<br>    ) AS Source<br>WHERE<br>    Target.dept_id = Source.dept_id<br>    AND Target.full_name &lt;&gt; Source.ParentDeptName;</p>
+<h3 id="全路径部门名称初始化"><a href="#全路径部门名称初始化" class="headerlink" title="全路径部门名称初始化"></a>全路径部门名称初始化</h3><p>UPDATE baseinfo_department AS Target<br>INNER JOIN (<br>    SELECT<br>        IFNULL(<br>            (<br>            SELECT<br>                GROUP_CONCAT( <code>name</code> ORDER BY <code>code</code> SEPARATOR ‘/‘ ) AS ParentDeptName<br>            FROM<br>                baseinfo_department<br>            WHERE<br>                <code>code</code> = LEFT ( DeptInfo.<code>code</code>, LENGTH( <code>code</code> ) )<br>                AND LENGTH( <code>code</code> ) &gt; 3<br>            ),<br>            DeptInfo.<code>name</code><br>        ) AS ParentDeptName,<br>        DeptInfo.*<br>    FROM<br>        baseinfo_department AS DeptInfo<br>    ) AS Source ON Target.dept_id = Source.dept_id<br>    SET Target.full_name = Source.ParentDeptName;</p>
 
-
-    <!-- Tag Cloud Page -->
-    <hr>
-<br>
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LLI/">LLI</a><span class="category-list-count">3</span></li></ul>
-
-<p class="count"></p>
-
-<div class="tags">
-    <a href="/tags/hexo/" style="font-size: 16px; color: #808080">hexo</a> <a href="/tags/init/" style="font-size: 16px; color: #808080">init</a>
-</div>
-<style>
-    .category-list li{
-        display: inline-block;
-        margin: 0 1em .5em 0;
-        padding: 4px;
-        border: 1px solid lightgray;
-        font-size: 1.2rem;
-    }
-    .category-list a { color: gray; }
-    .category-list-item:hover a {
-        color: gray;
-        text-decoration: none;
-    }
-    .category-list-count {
-        margin-left: 2px;
-        font-size: .9rem;
-    }
-    .article-entry ul li:before{ display: none; }
-    .article-inner { text-align: center; }
-    .tags {
-        max-width: 42em;
-        margin: 2em auto;
-        margin-top: 0em;
-    }
-    .tags a {
-        margin-right: 1em;
-        line-height: 65px;
-        border-bottom: 1px solid gray;
-        white-space: nowrap;
-        transition: border-bottom .5s;
-    }
-    .tags a:hover {
-        border-bottom: 3px dotted gray;
-        text-decoration: none;
-    }
-    #count > span {
-        margin: auto .2em;
-        font-weight: bold;
-    }
-</style>
-
-<!-- Count tags and categories -->
-<p id="count">
-        已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-        共计<span><script>document.write($(".tags > a").length)</script></span>个标签
-</p>
-<script>
-    $('#count').appendTo('.count');
-</script>
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/09/11/2020/mysql/">MySQL 层级表结构相关脚本</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Li Hao</a></p>
+        <p><span>发布时间:</span>2020-09-11, 17:02:07</p>
+        <p><span>最后更新:</span>2020-09-11, 17:02:07</p>
+        
+            <p>
+                <span>更新历史:</span><i class="fa fa-github"></i>
+                <a href="<文章 Blame 地址>/2020-09-11.2020/mysql.md" title="顺序查看文章各部分修改记录" target = "_blank">Blame</a>,
+                <a href="<文章 History 地址>/2020-09-11.2020/mysql.md" title="查看文章有关更新记录" target = "_blank">History</a><span class="raw">文本模式:</span><i class="fa fa-file-text-o"></i>
+                <a href="<文章 Raw 地址>/2020-09-11.2020/mysql.md" title="查看 & 下载文章 Markdown 原始文本" target = "_blank"> .md Raw</a>
+            </p>
+        
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/09/11/2020/mysql/" title="MySQL 层级表结构相关脚本">http://yoursite.com/2020/09/11/2020/mysql/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2020/09/11/2020/mysql/　　作者: Li Hao" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/27/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-层级表结构相关脚本"><span class="toc-number">1.</span> <span class="toc-text">MySQL 层级表结构相关脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新同一层级排序值"><span class="toc-number">1.1.</span> <span class="toc-text">刷新同一层级排序值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询编码错误数据"><span class="toc-number">1.2.</span> <span class="toc-text">查询编码错误数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新编码-同一层级排序不可以重复"><span class="toc-number">1.3.</span> <span class="toc-text">刷新编码(同一层级排序不可以重复)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询全路径错误数据"><span class="toc-number">1.4.</span> <span class="toc-text">查询全路径错误数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全路径部门名称初始化"><span class="toc-number">1.5.</span> <span class="toc-text">全路径部门名称初始化</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -437,7 +426,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"标签　| lli　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MySQL 层级表结构相关脚本　| lli　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -471,6 +460,24 @@
 <!-- City版安装代码已完成 -->
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/27/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/09/11/2020/mysql/">MySQL 层级表结构相关脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/27/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/27/2019/hexo-diff-work/">Hexo不同电脑之间工作</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/26/2017/MyBatis_Plugin/">MyBatis plugin for IntelliJ 各个版本的下载地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/26/2017/JRebel/">JRebel for IntelliJ 各个版本的下载地址</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/26/2017/launchpad/">一个令人赏心悦目的视频分享给大家</a></li></ul>
 
 
 
